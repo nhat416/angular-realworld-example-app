@@ -9,22 +9,27 @@ files:
     # define where to copy them on the EC2 instance
     destination: /home/ec2-user/angular-app
 # Set the permissions for the files and folders copied to the EC2 instance.
-permissions:
-  - object: /home/ec2-user/angular-app
+#permissions:
+#  - object: /home/ec2-user/angular-app
     # the pattern of the files that the permissions will apply to.
-    pattern: "**" # or "*.html"
+    #pattern: "**" # or "*.html"
     # Linux file permissions
-    mode: '0755'
+    #mode: '0755'
     # owner of the file
-    owner: root
+    #owner: root
     # group of the file
-    group: root
+    #group: root
     # define whether these permissions will be applied to files or directories or both.
-    type:
-      - file
-      - directory
+    #type:
+    #  - file
+    #  - directory
 # Define deployment lifecycle events.
 hooks:
-  ApplicationStart:
-    - location: deploy-scripts/application-start-hook.sh
+  AfterInstall:
+    - location: scripts/AfterInstall.sh
       timeout: 60
+      runas: root
+  ApplicationStart:
+    - location: scripts/ApplicationStart.sh
+      timeout: 60
+      runas: ec2-user
