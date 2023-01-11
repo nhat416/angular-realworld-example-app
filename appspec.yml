@@ -1,0 +1,30 @@
+version: 0.0
+os: linux
+# Tell CodeDeploy where to find the application build artifacts.
+files:
+    # it will take the relative path of the file or folder in the revision that will be copied.
+    # / means everything in the root directory.
+    # source must align with the artifacts section in buildspec.yml
+  - source: /
+    # define where to copy them on the EC2 instance
+    destination: /home/ec2-user/angular-app
+# Set the permissions for the files and folders copied to the EC2 instance.
+permissions:
+  - object: /home/ec2-user/angular-app
+    # the pattern of the files that the permissions will apply to.
+    pattern: "**" # or "*.html"
+    # Linux file permissions
+    mode: '0755'
+    # owner of the file
+    owner: root
+    # group of the file
+    group: root
+    # define whether these permissions will be applied to files or directories or both.
+    type:
+      - file
+      - directory
+# Define deployment lifecycle events.
+hooks:
+  ApplicationStart:
+    - location: deploy-scripts/application-start-hook.sh
+      timeout: 60

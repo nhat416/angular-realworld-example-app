@@ -1,0 +1,13 @@
+# Version of buildspec.yml
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      # install npm, angular and dependencies
+      - npm install && npm install -g @angular/cli
+  build:
+    commands:
+      # run unit tests
+      - ng test
