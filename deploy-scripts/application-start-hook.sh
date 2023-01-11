@@ -6,4 +6,13 @@ export NVM_DIR="/home/ec2-user/.nvm"
 # navigate to the application directory
 cd /home/ec2-user/angular-app
 
-ng serve
+npm install pm2 -g
+
+npm run stop-pm2
+
+npm run build
+
+npm run start-pm2
+
+
+#ng serve
