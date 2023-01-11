@@ -1,4 +1,7 @@
 #!/bin/bash
+
+su - ec2-user
+
 # set up the npm path
 export NVM_DIR="/home/ec2-user/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
